@@ -1,0 +1,4 @@
+data/*.sqlite*
+data/cards/
+.DS_Store
+/vendor/
