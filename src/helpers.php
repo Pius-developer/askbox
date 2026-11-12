@@ -175,3 +175,12 @@ function avatar_initials(string $name): string
     $ini = mb_substr($parts[0], 0, 1) . (isset($parts[1]) ? mb_substr($parts[1], 0, 1) : '');
     return mb_strtoupper($ini);
 }
+
+// ---- Email ----------------------------------------------------------------
+
+/** Email a new user their AskBox link. Signup still works if this fails. */
+function send_welcome_email(array $user): bool
+{
+    $email = require ROOT . '/views/emails/welcome.php';
+    return Mailer::fromConfig()->send($user['email'], $email['subject'], $email['text'], $email['html']);
+}

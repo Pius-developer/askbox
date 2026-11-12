@@ -18,6 +18,7 @@ AskBox gives anyone a personal link (`askbox.ejikepius.dev/@you`) where their au
 - **Owner inbox:** answer, edit, pin, hide or delete questions
 - **Review-first mode:** new questions stay hidden until the owner approves them
 - **Spam protection:** per-visitor rate limits, a honeypot bot trap and a banned-words filter
+- **Welcome email:** new users get their link by email, sent over SMTP with a tiny built-in mailer (no PHPMailer)
 - **Viral loop:** every box page has a "Get your own AskBox" call-to-action
 - Responsive design that works on phones
 
@@ -63,6 +64,8 @@ Open http://localhost:8000, create an account, then open your `/@username` page 
 | Change the name, creator credit, spam limits or banned words | `src/config.php` |
 | Change colors and fonts | `:root` variables at the top of `public/assets/app.css` (questions use Lora italic on an orange highlight; everything else uses Inter) |
 | Edit landing page copy | `views/home.php` |
+| Edit the welcome email | `views/emails/welcome.php` |
+| Set up sending email | Copy `config.local.example.php` to `config.local.php` (see [DEPLOY.md](DEPLOY.md)) |
 | Change the share-card design | `src/ShareCard.php` → `render()` |
 | Remove upvotes | Delete the `.vote-row` blocks in `views/profile.php` and `views/question.php` (the button itself is `views/partials/vote.php`) |
 | Remove the "Create your box" banner | The `.spread` block at the bottom of `views/profile.php` |
@@ -72,8 +75,8 @@ Open http://localhost:8000, create an account, then open your `/@username` page 
 
 ```
 public/          web root: index.php (router), assets/ (CSS, JS, fonts)
-src/             config, Database, UserRepository, QuestionRepository, ShareCard, helpers
-views/           PHP templates (layout, home, profile, question, dashboard, settings, auth)
+src/             config, Database, UserRepository, QuestionRepository, ShareCard, Mailer, helpers
+views/           PHP templates (layout, home, profile, question, dashboard, settings, auth, emails/)
 data/            SQLite DB + cached share cards (git-ignored)
 docs/            screenshots and flyer
 ```

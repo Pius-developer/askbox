@@ -36,9 +36,22 @@ In `src/config.php`:
 ## 6. HTTPS
 `.dev` domains **require** HTTPS. Turn on the free SSL certificate (cPanel: **SSL/TLS Status → Run AutoSSL**; hPanel: **Security → SSL**) for the subdomain.
 
-## 7. Test it
+## 7. Welcome emails
+New users get an email with their link. To send real emails:
+
+1. In cPanel, open **Email → Email Accounts** and create `hello@ejikepius.dev`.
+2. Click **Connect Devices** next to it. Note the **outgoing server** (usually `mail.ejikepius.dev`) and the **SMTP port** (usually `465`).
+3. In **File Manager**, copy `config.local.example.php` to `config.local.php` (same folder as `src/`, **not** inside `public/`) and fill in the host, port and mailbox password.
+4. Open **Email → Email Deliverability** and click **Repair** if SPF or DKIM shows a problem. Without this, emails land in spam.
+
+`config.local.php` is in `.gitignore`, so the password never reaches GitHub.
+If sending fails, signup still works and the reason is written to `data/mail.log`.
+Until it's set up, AskBox writes emails to `data/mail.log` instead of sending them.
+
+## 8. Test it
 - Open https://askbox.ejikepius.dev, sign up and claim `@ejike_pius`
 - Ask yourself a question from a private window, then answer it
 - Paste an answer link into a draft X post and check that the preview card appears
+- Sign up with a second email address and check that the welcome email arrives (and isn't in spam)
 
 The next projects follow the same steps with a new subdomain (`linksnip.ejikepius.dev`, and so on).

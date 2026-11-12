@@ -16,4 +16,5 @@ require __DIR__ . '/Database.php';
 require __DIR__ . '/UserRepository.php';
 require __DIR__ . '/QuestionRepository.php';
 require __DIR__ . '/ShareCard.php';
+require __DIR__ . '/Mailer.php';
 require __DIR__ . '/helpers.php';

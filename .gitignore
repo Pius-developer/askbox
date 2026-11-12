@@ -2,3 +2,6 @@ data/*.sqlite*
 data/cards/
 .DS_Store
 /vendor/
+
+/config.local.php
+data/mail.log

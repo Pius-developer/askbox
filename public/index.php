@@ -69,7 +69,10 @@ if ($path === '/signup') {
         if (!$errors) {
             $id = $users->create($old['username'], $old['display_name'], $old['email'], $password);
             login_user($id);
-            flash('Your AskBox is live! Share your link to start getting questions.');
+            $emailed = send_welcome_email($users->find($id));
+            flash($emailed
+                ? 'Your AskBox is live! We also emailed you your link.'
+                : 'Your AskBox is live! Share your link to start getting questions.');
             redirect('/dashboard');
         }
     }
