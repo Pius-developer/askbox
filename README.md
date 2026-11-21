@@ -65,7 +65,6 @@ Open http://localhost:8000, create an account, then open your `/@username` page 
 | Change colors and fonts | `:root` variables at the top of `public/assets/app.css` (questions use Lora italic on an orange highlight; everything else uses Inter) |
 | Edit landing page copy | `views/home.php` |
 | Edit the welcome email | `views/emails/welcome.php` |
-| Set up sending email | Copy `config.local.example.php` to `config.local.php` (see [DEPLOY.md](DEPLOY.md)) |
 | Change the share-card design | `src/ShareCard.php` → `render()` |
 | Remove upvotes | Delete the `.vote-row` blocks in `views/profile.php` and `views/question.php` (the button itself is `views/partials/vote.php`) |
 | Remove the "Create your box" banner | The `.spread` block at the bottom of `views/profile.php` |
@@ -81,7 +80,6 @@ data/            SQLite DB + cached share cards (git-ignored)
 docs/            screenshots and flyer
 ```
 
-Deploying to a subdomain: see [DEPLOY.md](DEPLOY.md).
 
 ## Credits
 
